@@ -1,6 +1,7 @@
-(defpackage #:nixeagle.juggler
+(defpackage #:juggler
   (:use :cl :nutils))
-(in-package :nixeagle.juggler)
+
+(in-package :juggler)
 
 (defstruct (3d-vector
              (:constructor make-3d-vector (x y z)))
