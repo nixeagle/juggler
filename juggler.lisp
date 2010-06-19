@@ -58,7 +58,7 @@ with much greater type safety built in."
   (declare (3d-vector position)
 	   (3d-vector distance)
 	   (real scale-factor))
-  (vector-+ position (scale distance scale-factor)))
+  (add-vector position (scale distance scale-factor)))
 
 
 (defun cross-product (vector1 vector2)
