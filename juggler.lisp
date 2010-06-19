@@ -90,4 +90,12 @@ uv=ad+be+cf"
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (+ (* x1 x2) (* y1 y2) (* z1 z2)))))
 
+(defun subtract-vector (vector1 vector2)
+"Subtract two vectors"
+  (add-vector vector1 (negate vector2)))
+
+(defun subtract-real-vector (vector real)
+"Subtract a constant from VECTOR"
+  (add-real-vector vector (* -1 real)))
+
 ;;; END
