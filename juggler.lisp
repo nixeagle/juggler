@@ -45,6 +45,7 @@ multiplying it by a constant"
     (make-3d-vector (* x scale-factor) (* y scale-factor) (* z scale-factor))))
 
 (defun divide-vector (vector divide-factor)
+"Basically inverted scale"
   (declare (3d-vector vector)
            (real divide-factor))
   (scale vector (/ 1 divide-factor)))
@@ -60,6 +61,10 @@ multiplying it by a constant"
   (scale vector (/ 1 (magnitude vector))))
 
 (defun ray (position distance scale-factor)
+"useful when measuring distance over time. the distance is 
+multiplied by the scale-factor, then added to position.
+Think of starting at position, going distance(so many miles)
+per scale-factor(hour)"
   (declare (3d-vector position)
 	   (3d-vector distance)
 	   (real scale-factor))
