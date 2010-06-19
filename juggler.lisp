@@ -13,7 +13,7 @@ with much greater type safety built in."
   (y nil :type real)
   (z nil :type real))
 
-(defun vector-add (vector1 vector2)
+(defun vector-+ (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
   (with-slots ((x1 x) (y1 y) (z1 z)) vector1
@@ -46,4 +46,6 @@ with much greater type safety built in."
   (declare (3d-vector position)
 	   (3d-vector distance)
 	   (real scale-factor))
-  (vector-add position (scale distance scale-factor)))
+  (vector-+ position (scale distance scale-factor)))
+
+;;; END
