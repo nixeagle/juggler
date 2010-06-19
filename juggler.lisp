@@ -108,8 +108,8 @@ result of this function defines the Z axis."
 (defun dot-product (vector1 vector2)
 "v is one vector, u is the other vector, and abc, and def,
 are coordinates for v and u respectfully
-v=abc
-u=def
+v=[a b c]
+u=[d e f]
 uv=ad+be+cf"
   (declare (3d-vector vector1 vector2))
   (with-slots ((x1 x) (y1 y) (z1 z)) vector1
