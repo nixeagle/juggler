@@ -13,6 +13,17 @@ with much greater type safety built in."
   (y nil :type real)
   (z nil :type real))
 
+;;; Set reader macro so #V(1 2 3) works
+(set-dispatch-macro-character #\# #\V
+                              #'(lambda (stream char1 char2)
+                                  (declare (ignore char1 char2))
+                                  (assert (char= #\( (read-char stream)))
+                                  (let ((vect (read-delimited-list #\) stream)))
+                                    (assert (length= 3 vect))
+                                    (make-3d-vector (first vect)
+                                                    (second vect)
+                                                    (third vect)))))
+
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
