@@ -24,6 +24,11 @@ with much greater type safety built in."
                                                     (second vect)
                                                     (third vect)))))
 
+(defmethod print-object ((object 3d-vector) stream)
+  (format stream "#V(~A ~A ~A)" (3d-vector-x object)
+          (3d-vector-y object)
+          (3d-vector-z object)))
+
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
