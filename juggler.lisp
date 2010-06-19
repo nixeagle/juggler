@@ -13,14 +13,14 @@ with much greater type safety built in."
   (y nil :type real)
   (z nil :type real))
 
-(defun vector-+ (vector1 vector2)
+(defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
   (with-slots ((x1 x) (y1 y) (z1 z)) vector1
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (make-3d-vector (+ x1 x2) (+ y1 y2) (+ z1 z2)))))
 
-(defun %vector-+-real (vector real)
+(defun add-real-vector (vector real)
   "Add a constant to VECTOR"
   (declare (3d-vector vector) (real real))
   (with-slots (x y z) vector
