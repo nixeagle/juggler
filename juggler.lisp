@@ -39,6 +39,11 @@ with much greater type safety built in."
   (with-slots (x y z) vector
     (make-3d-vector (* x scale-factor) (* y scale-factor) (* z scale-factor))))
 
+(defun divide-vector (vector divide-factor)
+  (declare (3d-vector vector)
+           (real divide-factor))
+  (scale vector (/ 1 divide-factor)))
+
 (defun negate (vector)
   "Invert VECTOR by multiplying by -1."
   (declare (3d-vector vector))
