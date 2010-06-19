@@ -79,5 +79,15 @@ result of this function defines the Z axis."
                       (- (* x1 y2)
                          (* y1 x2))))))
 
+(defun dot-product (vector1 vector2)
+"v is one vector, u is the other vector, and abc, and def,
+are coordinates for v and u respectfully
+v=abc
+u=def
+uv=ad+be+cf"
+  (declare (3d-vector vector1 vector2))
+  (with-slots ((x1 x) (y1 y) (z1 z)) vector1
+    (with-slots ((x2 x) (y2 y) (z2 z)) vector2
+      (+ (* x1 x2) (* y1 y2) (* z1 z2)))))
 
 ;;; END
