@@ -20,6 +20,13 @@ with much greater type safety built in."
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (make-3d-vector (+ x1 x2) (+ y1 y2) (+ z1 z2)))))
 
+(defun %vector-+-real (vector real)
+  "Add a constant to VECTOR"
+  (declare (3d-vector vector) (real real))
+  (with-slots (x y z) vector
+    (make-3d-vector (+ x real)
+                    (+ y real)
+                    (+ z real))))
 
 (defun magnitude (vector)
   (declare (3d-vector vector))
