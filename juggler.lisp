@@ -29,11 +29,16 @@ with much greater type safety built in."
                     (+ z real))))
 
 (defun magnitude (vector)
+"The magnitude of a vector (the length of a vector) 
+is computing using the 3-dimensional version of the 
+Pythagorean Theorem."
   (declare (3d-vector vector))
   (with-slots (x y z) vector
     (sqrt (+ (expt x 2) (expt y 2) (expt z 2)))))
 
 (defun scale (vector scale-factor)
+"You can scale a vector (change its length) by
+multiplying it by a constant"
   (declare (3d-vector vector)
            (real scale-factor))
   (with-slots (x y z) vector
