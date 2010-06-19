@@ -42,3 +42,8 @@ with much greater type safety built in."
   (declare (3d-vector vector))
   (scale vector (/ 1 (magnitude vector))))
 
+(defun ray (vector1 vector2 scale-factor)
+  (declare (3d-vector vector1)
+	   (3d-vector vector2)
+	   (real scale-factor))
+  (scale (vector-add vector1 vector2) scale-factor))
