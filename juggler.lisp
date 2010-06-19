@@ -16,9 +16,10 @@ with much greater type safety built in."
 (defun vector-add (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
-  (with-slots (x1 y1 z1) vector1
-    (with-slots (z2 y2 z2) vector2
-      (make-3d-vector (+ x1 x2) (+ x1 x2) (+ x1 x2)))))
+  (with-slots ((x1 x) (y1 y) (z1 z)) vector1
+    (with-slots ((x2 x) (y2 y) (z2 z)) vector2
+      (make-3d-vector (+ x1 x2) (+ y1 y2) (+ z1 z2)))))
+
 
 (defun magnitude (vector)
   (declare (3d-vector vector))
