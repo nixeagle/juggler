@@ -1,7 +1,4 @@
 (asdf:defsystem :juggler
-  :depends-on (:nutils :eos
-                       ;; Not wholly sure we need opengl
-                       ;:cl-opengl
-                       )
+  :depends-on (:nutils :eos :cl-gd)
   :components
   ((:file "juggler")))

@@ -1,0 +1,24 @@
+In progress lisp implementation of juggler on meatfighter
+
+* Setup
+  We depend on the following git repositories:
+
+  : git://github.com/nixeagle/Eos.git
+  : git://github.com/nixeagle/nutils.git
+
+  Please clone those and symlink them.
+
+  Next use =asdf-install= to install =alexandria= and =cl-gd= if they are
+  not already setup. =cl-gd= requires a bit of extra setup, after you
+  install it vie asdf do the following to finalize the installation[fn:1]:
+
+  : cd ~/.sbcl/site/cl-gd-0.5.7
+  : gcc -fPIC -c cl-gd-glue.c
+  : ld -lgd -lz -lpng -ljpeg -lfreetype -lm -shared cl-gd-glue.o -o cl-gd-glue.so
+  : rm cl-gd-glue.o
+
+
+* Footnotes
+
+[fn:1] Assuming sbcl is used here, please change depending on what lisp
+you are using.
