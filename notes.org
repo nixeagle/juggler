@@ -1,0 +1,9 @@
+*** 2
+    We have to render a black rectangle and start to deal with some of the
+    complexities of 3d rendering.
+
+    https://secure.wikimedia.org/wikipedia/en/wiki/Gamma_correction
+
+    covers what gamma is and how gamma correction works. The basic
+    equation is: =255c^(1/g)= where =c= is one of the RGB color components
+    and =g= is the gamma value.
