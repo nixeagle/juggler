@@ -29,6 +29,12 @@ with much greater type safety built in."
           (3d-vector-y object)
           (3d-vector-z object)))
 
+(defmethod make-load-form ((object 3d-vector) &optional environment)
+  "Correct form for loading a 3d vector in a fasl."
+  (declare (ignore environment))
+  (with-slots (x y z) object
+   `(make-3d-vector ,x ,y ,z)))
+
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
