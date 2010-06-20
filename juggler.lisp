@@ -51,9 +51,10 @@ with much greater type safety built in."
                     (+ z real))))
 
 (defun magnitude (vector)
-"The magnitude of a vector (the length of a vector) 
-is computing using the 3-dimensional version of the 
-Pythagorean Theorem."
+  "The magnitude of a vector.
+
+Also known as the 'length' of a vector is computed using the 3-dimensional
+version of the Pythagorean Theorem."
   (declare (3d-vector vector))
   (with-slots (x y z) vector
     (sqrt (+ (expt x 2) (expt y 2) (expt z 2)))))
@@ -83,10 +84,11 @@ multiplying it by a constant"
   (scale vector (/ 1 (magnitude vector))))
 
 (defun ray (position distance scale-factor)
-"useful when measuring distance over time. the distance is 
-multiplied by the scale-factor, then added to position.
-Think of starting at position, going distance(so many miles)
-per scale-factor(hour)"
+  "useful when measuring distance over time.
+
+The distance is multiplied by the scale-factor, then added to position.
+Think of starting at position, going distance(so many miles) per
+scale-factor(hour)"
   (declare (3d-vector position)
 	   (3d-vector distance)
 	   (real scale-factor))
@@ -112,22 +114,23 @@ result of this function defines the Z axis."
                          (* y1 x2))))))
 
 (defun dot-product (vector1 vector2)
-"v is one vector, u is the other vector, and abc, and def,
+  "v is one vector, u is the other vector, and abc, and def,
 are coordinates for v and u respectfully
-v=[a b c]
-u=[d e f]
-uv=ad+be+cf"
+
+  v=[a b c]
+  u=[d e f]
+  uv=ad+be+cf"
   (declare (3d-vector vector1 vector2))
   (with-slots ((x1 x) (y1 y) (z1 z)) vector1
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (+ (* x1 x2) (* y1 y2) (* z1 z2)))))
 
 (defun subtract-vector (vector1 vector2)
-"Subtract two vectors"
+  "Subtract two vectors"
   (add-vector vector1 (negate vector2)))
 
 (defun subtract-real-vector (vector real)
-"Subtract a constant from VECTOR"
+  "Subtract a constant from VECTOR"
   (add-real-vector vector (* -1 real)))
 
 ;;; END
