@@ -35,11 +35,10 @@ with much greater type safety built in."
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (real-vector vector1 vector2))
-  (make-array (length vector1) :element-type 'real
-              :initial-contents (loop
-                                   for i across vector1
-                                   for j across vector2
-                                   collect (+ i j))))
+  (apply #'vector (loop
+                     for i across vector1
+                     for j across vector2
+                     collect (+ i j))))
 
 (defun add-vectors (&rest vectors)
   "Add more then 2 VECTORS at a time."
