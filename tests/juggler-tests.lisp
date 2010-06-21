@@ -89,6 +89,9 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
                              #V(0 0 0)
                              #V(-0.0000000001 0 0))))
 
-(run! :juggler)
+(test (translate-2d-coordinate :suite :juggler)
+  (is (juggler::vector= #(0 0)
+                        (juggler::translate-2d-coordinate 0 0 :width 2 :height 2))))
+
 ;;; END
 

@@ -177,12 +177,10 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   (declare (3d-vector u v w)
            (ignore v))
   (cond
-    ((vector= w #V(0 1 0)) (values #V(1 0 0)
-                                  #V(0 0 -1)))
-    ((vector= w #V(0 -1 0) (values #V(1 0 0)
-                                  #V(0 0 1))))
+    ((vector= w #V(0 1 0)) (values #V(1 0 0) #V(0 0 -1)))
+    ((vector= w #V(0 -1 0) (values #V(1 0 0) #V(0 0 1))))
     (t (values (vector (svref w 2) 0 (- (svref w 0)))
-                       (cross-product w u)))))
+               (cross-product w u)))))
 
 (defun onb! (u v w)
   (declare (3d-vector u v w))
@@ -195,6 +193,15 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
            (3d-vector origin u v))
   (add-vectors origin (scale u (svref 2d-point 0))
                (scale v (svref 2d-point 1))))
+
+(defun translate-2d-coordinate (x y &key (width *width*) (height *height*))
+  "Translate the coordinates from upper left based to center based.
+
+assuming a 2x2 grid with #(0 0) at the upper left, this translation
+changes the addressing such that the old #(0 0) is now #(-1 1)."
+  (declare (real x y width height))
+  (the (vector real 2) (vector (- x (/ width 2)) (- (/ height 2) y))))
+
 
 (defun gamma (color gamma)
   "Return the gamma-corrected color. Often used for contrasts. Formula is 255*c^(1/g)"
