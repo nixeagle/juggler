@@ -217,12 +217,16 @@ Our ratio is this:
 
 
 (defun gamma (color gamma)
-  "Return the gamma-corrected color. Often used for contrasts. Formula is 255*c^(1/g)"
+  "Return the gamma-corrected color.
+
+Often used for contrasts. Formula is 255*c^(1/g)"
   (declare (real color gamma))
   (* 255 (expt color (/ 1 gamma))))
 
 (defun gamma-3-colors (colors gamma)
-  "Return a vector of 3, with gamma corrected colors. See (gamma) for details"
+  "Return a vector of 3, with gamma corrected colors.
+
+See `gamma' for details"
   (declare (real-vector colors)
 	   (real gamma))
   (apply #'make-real-vector (loop for i across colors
