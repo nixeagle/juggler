@@ -42,7 +42,7 @@ with much greater type safety built in."
 
 (defun add-vectors (&rest vectors)
   "Add more then 2 VECTORS at a time."
-  (declare ((cons 3d-vector (cons 3d-vector)) vectors))
+  (declare ((cons real-vector (cons real-vector)) vectors))
   (if (length= 2 vectors)
       (add-vector (car vectors) (cadr vectors))
       (apply #'add-vectors (add-vector (car vectors) (cadr vectors))
