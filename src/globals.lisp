@@ -16,8 +16,8 @@
 
 Right now we will treat this as the origin vector.")
 
-(declaim ((vector (member 0)) *center*))
-(defvar *center* #(0 0 0)
+(declaim (simple-vector *center*))
+(defvar *center* (vector 0 0 0)
   "This is supposed to be the origin.
 
 This is the center of the virtual screen, our `*eye*' is behind this and
