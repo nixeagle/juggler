@@ -158,4 +158,14 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
                (pairwise-multiply-vector point v)
                (pairwise-multiply-vector point w)))
 
+(defun gamma (color gamma)
+  (declare (real color gamma))
+  (* 255 (expt color (/ 1 gamma))))
+
+(defun gamma-3-colors (colors gamma)
+  (declare (3d-vector colors)
+	   (real gamma))
+  (with-slots ((r x) (g y) (b z)) colors
+    (make-3d-vector (gamma r gamma) (gamma g gamma) (gamma b gamma))))
+
 ;;; END
