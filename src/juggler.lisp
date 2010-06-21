@@ -155,6 +155,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
             for j across vector2
             collect (* i j))))
 
+#+ ()
 (defun transform (point origin u v w)
   "Transform POINT with respect to unitvectors U V W."
   (declare (real-vector point origin u v w))
@@ -215,7 +216,7 @@ Our ratio is this:
   (declare (real virtual-width height width))
   (/ (* virtual-width height) width))
 
-(defun virtual-coordinate-point (point u v w &key (center *center*))
+(defun transform (point u v w &key (center *center*))
   "Translates POINT to the virtual coordinate system.
 
 U V W need to be at right angles to each other."
