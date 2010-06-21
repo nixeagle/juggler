@@ -147,9 +147,11 @@ of its sub operations.
 
 Pairwise here means multiply each 'x', each 'y', each 'z'."
   (declare (real-vector vector1 vector2))
-  (with-slots (x y z) vector1
-    (with-slots ((u x) (v y) (w z)) vector2
-      (make-3d-vector (* x u) (* y v) (* z w)))))
+  (apply #'vector
+         (loop
+            for i across vector1
+            for j across vector2
+            collect (* i j))))
 
 (defun transform (point origin u v w)
   "Transform POINT with respect to unitvectors U V W."
