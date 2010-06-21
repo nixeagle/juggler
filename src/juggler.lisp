@@ -31,9 +31,11 @@ with much greater type safety built in."
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
   (declare (3d-vector vector1 vector2))
-  (with-slots ((x1 x) (y1 y) (z1 z)) vector1
-    (with-slots ((x2 x) (y2 y) (z2 z)) vector2
-      (make-3d-vector (+ x1 x2) (+ y1 y2) (+ z1 z2)))))
+  (make-array (length vector1) :element-type 'real
+              :initial-contents (loop
+                                   for i across vector1
+                                   for j across vector2
+                                   collect (+ i j))))
 
 (defun add-vectors (&rest vectors)
   "Add more then 2 VECTORS at a time."
