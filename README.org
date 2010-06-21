@@ -18,6 +18,20 @@ In progress lisp implementation of juggler on meatfighter
   : rm cl-gd-glue.o
 
 
+  Now we also depend on lispbuilder-sdl. This depends on the C library
+  libsdl. Please find and install that library using whatever distro tools
+  required.
+
+  Then we need to install another broken dependency called lift. The
+  official version has a commit that breaks the library for anyone that
+  does not have moptilities already loaded. Needless to say its far
+  simpler to do =git clone git://github.com/nixeagle/lift.git= which is a
+  version of lift without the breaking code. Symlink the library so that
+  asdf will see it and try to do =(require :lift)=.
+
+  Finally run =(asdf-install:install :lispbuilder-sdl)=.
+
+
 * Footnotes
 
 [fn:1] Assuming sbcl is used here, please change depending on what lisp
