@@ -6,6 +6,7 @@
             :depends-on ("packages")
             :components
             ((:file "globals")
+             (:file "random")
              (:file "juggler" :depends-on ("globals"))))))
 
 ;;; END
