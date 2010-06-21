@@ -13,6 +13,10 @@ with much greater type safety built in."
 (deftype 3d-vector ()
   '(vector real 3))
 
+(deftype real-vector ()
+  "A vector containing only real numbers."
+  '(vector real))
+
 (defun make-3d-vector (x y z)
   (declare (real x y z))
   (make-array 3 :element-type 'real
