@@ -68,3 +68,11 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
 
 (test (dot-product :suite :juggler)
   (is (= 6 (juggler::dot-product #V(1 1 1) #V(2 2 2)))))
+
+(test (add-vectors :suite :juggler
+                   :depends-on add-vector)
+  (is (equalp #V(3 3 3)
+              (juggler::add-vectors #V(1 1 1) #V(1 1 1) #V(1 1 1)))))
+
+;;; END
+

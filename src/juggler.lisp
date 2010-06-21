@@ -39,6 +39,14 @@ with much greater type safety built in."
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (make-3d-vector (+ x1 x2) (+ y1 y2) (+ z1 z2)))))
 
+(defun add-vectors (&rest vectors)
+  "Add more then 2 VECTORS at a time."
+  (declare ((cons 3d-vector (cons 3d-vector)) vectors))
+  (if (length= 2 vectors)
+      (add-vector (car vectors) (cadr vectors))
+      (apply #'add-vectors (add-vector (car vectors) (cadr vectors))
+             (cddr vectors))))
+
 (defun add-real-vector (vector real)
   "Add a constant to VECTOR"
   (declare (3d-vector vector) (real real))
