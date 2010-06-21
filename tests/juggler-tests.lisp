@@ -90,13 +90,19 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
                              #V(-0.0000000001 0 0))))
 
 (test (translate-2d-coordinate :suite :juggler)
-  (is (juggler::vector= #(0 0)
+  (is (juggler::vector= #(-1 1)
                         (juggler::translate-2d-coordinate 0 0 :width 2 :height 2))))
 
 
 (test (virtual-screen-height :suite :juggler)
   "Should have the same proportions as image height and width."
   (is (= 10 (juggler::virtual-screen-height 10 5 5))))
+
+(test (gamma :suite :juggler)
+  (is (= 255 (juggler::gamma 1 1))))
+
+(test (gamma-3-colors :suite :juggler)
+  (is (equalp #V(255 255 255) (juggler::gamma-3-colors #V(1 1 1) 1))))
 
 ;;; END
 
