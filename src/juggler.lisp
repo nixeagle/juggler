@@ -122,9 +122,8 @@ For example #V[1 0 0] #V[0 1 0] results in #V[0 0 1]. Imagine that the
 first two vectors are the X and the Y axis on a coordinate chart, the
 result of this function defines the Z axis."
   (declare (3d-vector vector1 vector2))
-  (let ((x1 (svref vector1 0)) (y1 (svref vector1 1))
-        (z1 (svref vector1 2)) (x2 (svref vector2 0))
-        (y2 (svref vector2 1)) (z2 (svref vector2 2)))
+  (let ((x1 (x vector1)) (y1 (y vector1)) (z1 (z vector1))
+        (x2 (x vector2)) (y2 (y vector2)) (z2 (z vector2)))
     (vector (- (* y1 z2)
                (* z1 y2))
             (- (* z1 x2)
