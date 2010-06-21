@@ -16,6 +16,18 @@
 (defun make-real-vector (&rest vector)
   (apply #'vector vector))
 
+;;; This define x y and z, aliases for `aref' on a vector.
+(declaim (inline x y z))
+(macrolet ((def (name index)
+             `(defun ,name (vector)
+                ,(format nil "Grabs the ~(~A~) direction out of the vector."
+                        name)
+                (declare (real-vector vector))
+                (svref vector ,index))))
+  (def x 0)
+  (def y 1)
+  (def z 2))
+
 ;;; Set reader macro so #V(1 2 3) works
 (set-dispatch-macro-character #\# #\V
                               #'(lambda (stream char1 char2)
