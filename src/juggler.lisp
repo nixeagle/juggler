@@ -67,12 +67,11 @@ version of the Pythagorean Theorem."
            summing (expt i 2))))
 
 (defun scale (vector scale-factor)
-"You can scale a vector (change its length) by
+  "You can scale a vector (change its length) by
 multiplying it by a constant"
-  (declare (3d-vector vector)
+  (declare (real-vector vector)
            (real scale-factor))
-  (with-slots (x y z) vector
-    (make-3d-vector (* x scale-factor) (* y scale-factor) (* z scale-factor))))
+  (apply #'vector (loop for i across vector collect (* i scale-factor))))
 
 (defun divide-vector (vector divide-factor)
 "Basically inverted scale"
