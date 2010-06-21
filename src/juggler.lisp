@@ -1,6 +1,3 @@
-(defpackage #:juggler
-  (:use :cl :nutils))
-
 (in-package :juggler)
 
 (defstruct (3d-vector
