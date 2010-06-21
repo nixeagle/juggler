@@ -62,9 +62,9 @@ with much greater type safety built in."
 
 Also known as the 'length' of a vector is computed using the 3-dimensional
 version of the Pythagorean Theorem."
-  (declare (3d-vector vector))
-  (with-slots (x y z) vector
-    (sqrt (+ (expt x 2) (expt y 2) (expt z 2)))))
+  (declare (real-vector vector))
+  (sqrt (loop for i across vector
+           summing (expt i 2))))
 
 (defun scale (vector scale-factor)
 "You can scale a vector (change its length) by
