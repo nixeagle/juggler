@@ -77,5 +77,11 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
 (test (pairwise-multiply-vector :suite :juggler)
   (is (equalp #V(4 4 4)
               (juggler::pairwise-multiply-vector #V(2 2 2) #V(2 2 2)))))
+
+(test (transform :suite :juggler
+                 :depends-on (and . (add-vectors pairwise-multiply-vector)))
+  (is (equalp #V(1 2 3)
+              (juggler::transform #V(1 2 3) #V(0 0 0)
+                                  #V(1 0 0) #V(0 1 0) #V(0 0 1)))))
 ;;; END
 

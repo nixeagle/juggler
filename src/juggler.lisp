@@ -151,4 +151,11 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
     (with-slots ((u x) (v y) (w z)) vector2
       (make-3d-vector (* x u) (* y v) (* z w)))))
 
+(defun transform (point origin u v w)
+  "Transform POINT with respect to unitvectors U V W."
+  (declare (3d-vector point origin u v w))
+  (add-vectors origin (pairwise-multiply-vector point u)
+               (pairwise-multiply-vector point v)
+               (pairwise-multiply-vector point w)))
+
 ;;; END
