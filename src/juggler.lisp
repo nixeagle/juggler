@@ -161,6 +161,35 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
                (pairwise-multiply-vector point v)
                (pairwise-multiply-vector point w)))
 
+(defun construct-unit-vector (head tail)
+  (declare (real-vector head tail))
+  (unit-vector (subtract-vector head tail)))
+
+(defun vector= (&rest vectors)
+  (loop for vector in (cdr vectors)
+     always (loop
+               for a across (car vectors)
+               for b across vector
+               always (< (abs (- a b)) 0.000000001))))
+
+(defun onb (u v w)
+  "Defines a right handed coordinate system."
+  (declare (3d-vector u v w)
+           (ignore v))
+  (cond
+    ((vector= w #V(0 1 0)) (values #V(1 0 0)
+                                  #V(0 0 -1)))
+    ((vector= w #V(0 -1 0) (values #V(1 0 0)
+                                  #V(0 0 1))))
+    (t (values (vector (svref w 2) 0 (- (svref w 0)))
+                       (cross-product w u)))))
+
+(defun onb! (u v w)
+  (declare (3d-vector u v w))
+  (multiple-value-bind (u-result v-result) (onb u v w)
+    (setf u u-result
+          v v-result)))
+
 (defun gamma (color gamma)
   "Return the gamma-corrected color. Often used for contrasts. Formula is 255*c^(1/g)"
   (declare (real color gamma))

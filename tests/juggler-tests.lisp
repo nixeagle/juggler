@@ -83,5 +83,12 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
   (is (equalp #V(1 2 3)
               (juggler::transform #V(1 2 3) #V(0 0 0)
                                   #V(1 0 0) #V(0 1 0) #V(0 0 1)))))
+
+(test (vector= :suite :juggler)
+  (is-true (juggler::vector= #V(0.00000000001 0 0)
+                             #V(0 0 0)
+                             #V(-0.0000000001 0 0))))
+
+(run! :juggler)
 ;;; END
 
