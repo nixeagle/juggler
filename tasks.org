@@ -1,0 +1,8 @@
+These are things that need to be done soon.
+
+* Tasks
+*** TODO Define gamma function
+
+    This should take a color value (REAL) and return the gamma of that
+    value. The math equation looks like this:
+    : g(color, gamma) = 255 * color ^ (1 / gamma)
