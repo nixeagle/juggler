@@ -180,7 +180,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   (cond
     ((vector= w #V(0 1 0)) (values #V(1 0 0) #V(0 0 -1)))
     ((vector= w #V(0 -1 0) (values #V(1 0 0) #V(0 0 1))))
-    (t (values (vector (svref w 2) 0 (- (svref w 0)))
+    (t (values (vector (z w) 0 (- (x w)))
                (cross-product w u)))))
 
 (defun onb! (u v w)
