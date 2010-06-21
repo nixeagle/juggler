@@ -168,9 +168,9 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
 
 (defun gamma-3-colors (colors gamma)
   "Return a vector of 3, with gamma corrected colors. See (gamma) for details"
-  (declare (3d-vector colors)
+  (declare (real-vector colors)
 	   (real gamma))
-  (with-slots ((r x) (g y) (b z)) colors
-    (make-3d-vector (gamma r gamma) (gamma g gamma) (gamma b gamma))))
+  (apply #'vector (loop for i across colors
+                     collect (gamma i gamma))))
 
 ;;; END
