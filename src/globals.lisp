@@ -11,14 +11,20 @@
 
 
 ;;; Virtual screen stuff.
+(declaim (simple-vector *center* *look* *eye*))
 (defvar *eye* #(0 0 0)
   "Location where we are looking from.
 
 Right now we will treat this as the origin vector.")
 
-(declaim (simple-vector *center*))
 (defvar *center* (vector 0 0 0)
   "This is supposed to be the origin.
 
 This is the center of the virtual screen, our `*eye*' is behind this and
 the image we are tracing is in front of it.")
+
+
+(defvar *look* (vector)
+  "Object we are looking at.")
+
+;;; END
