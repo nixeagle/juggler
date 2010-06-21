@@ -1,6 +1,6 @@
 (in-package :juggler)
 
-(defstruct (3d-vector
+#+ () (defstruct (3d-vector
              (:constructor make-3d-vector (x y z)))
   "Models a vector in 3d.
 
@@ -10,27 +10,23 @@ with much greater type safety built in."
   (y nil :type real)
   (z nil :type real))
 
+(deftype 3d-vector ()
+  '(vector real 3))
+
+(defun make-3d-vector (x y z)
+  (declare (real x y z))
+  (make-array 3 :element-type 'real
+              :initial-contents (list x y z)))
+
 ;;; Set reader macro so #V(1 2 3) works
 (set-dispatch-macro-character #\# #\V
                               #'(lambda (stream char1 char2)
                                   (declare (ignore char1 char2))
                                   (assert (char= #\( (read-char stream)))
                                   (let ((vect (read-delimited-list #\) stream)))
-                                    (assert (length= 3 vect))
-                                    (make-3d-vector (first vect)
-                                                    (second vect)
-                                                    (third vect)))))
-
-(defmethod print-object ((object 3d-vector) stream)
-  (format stream "#V(~A ~A ~A)" (3d-vector-x object)
-          (3d-vector-y object)
-          (3d-vector-z object)))
-
-(defmethod make-load-form ((object 3d-vector) &optional environment)
-  "Correct form for loading a 3d vector in a fasl."
-  (declare (ignore environment))
-  (with-slots (x y z) object
-   `(make-3d-vector ,x ,y ,z)))
+                                    (make-array (length vect)
+                                                :element-type 'real
+                                                :initial-contents vect))))
 
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
