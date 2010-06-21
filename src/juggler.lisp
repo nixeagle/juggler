@@ -14,8 +14,7 @@
               :initial-contents (list x y z)))
 
 (defun make-real-vector (&rest vector)
-  (declare
-  (apply #'vector vector)))
+  (apply #'vector vector))
 
 ;;; Set reader macro so #V(1 2 3) works
 (set-dispatch-macro-character #\# #\V
