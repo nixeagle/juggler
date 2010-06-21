@@ -138,4 +138,17 @@ are coordinates for v and u respectfully
   "Subtract a constant from VECTOR"
   (add-real-vector vector (* -1 real)))
 
+(defun pairwise-multiply-vector (vector1 vector2)
+  "Multiply each direction pairwise.
+
+This is not really a valid mathematical operation, but for us it
+simplifies writing other functions that need an equivalent to this as part
+of its sub operations.
+
+Pairwise here means multiply each 'x', each 'y', each 'z'."
+  (declare (3d-vector vector1 vector2))
+  (with-slots (x y z) vector1
+    (with-slots ((u x) (v y) (w z)) vector2
+      (make-3d-vector (* x u) (* y v) (* z w)))))
+
 ;;; END

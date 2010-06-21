@@ -74,5 +74,8 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
   (is (equalp #V(3 3 3)
               (juggler::add-vectors #V(1 1 1) #V(1 1 1) #V(1 1 1)))))
 
+(test (pairwise-multiply-vector :suite :juggler)
+  (is (equalp #V(4 4 4)
+              (juggler::pairwise-multiply-vector #V(2 2 2) #V(2 2 2)))))
 ;;; END
 
