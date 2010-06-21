@@ -5,8 +5,9 @@
    (:module :src
             :depends-on ("packages")
             :components
-            ((:file "globals")
+            ((:file "readmacro")
+             (:file "globals")
              (:file "random")
-             (:file "juggler" :depends-on ("globals"))))))
+             (:file "juggler" :depends-on ("globals" "readmacro"))))))
 
 ;;; END
