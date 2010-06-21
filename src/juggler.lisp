@@ -34,7 +34,7 @@ with much greater type safety built in."
 
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
-  (declare (3d-vector vector1 vector2))
+  (declare (real-vector vector1 vector2))
   (make-array (length vector1) :element-type 'real
               :initial-contents (loop
                                    for i across vector1
@@ -75,18 +75,18 @@ multiplying it by a constant"
 
 (defun divide-vector (vector divide-factor)
 "Basically inverted scale"
-  (declare (3d-vector vector)
+  (declare (real-vector vector)
            (real divide-factor))
   (scale vector (/ 1 divide-factor)))
 
 (defun negate (vector)
   "Invert VECTOR by multiplying by -1."
-  (declare (3d-vector vector))
+  (declare (real-vector vector))
   (scale vector -1))
 
 (defun unit-vector (vector)
   "Compute unit vector of VECTOR."
-  (declare (3d-vector vector))
+  (declare (real-vector vector))
   (scale vector (/ 1 (magnitude vector))))
 
 (defun ray (position distance scale-factor)
@@ -95,8 +95,8 @@ multiplying it by a constant"
 The distance is multiplied by the scale-factor, then added to position.
 Think of starting at position, going distance(so many miles) per
 scale-factor(hour)"
-  (declare (3d-vector position)
-	   (3d-vector distance)
+  (declare (real-vector position)
+	   (real-vector distance)
 	   (real scale-factor))
   (add-vector position (scale distance scale-factor)))
 
@@ -126,7 +126,7 @@ are coordinates for v and u respectfully
   v=[a b c]
   u=[d e f]
   uv=ad+be+cf"
-  (declare (3d-vector vector1 vector2))
+  (declare (real-vector vector1 vector2))
   (with-slots ((x1 x) (y1 y) (z1 z)) vector1
     (with-slots ((x2 x) (y2 y) (z2 z)) vector2
       (+ (* x1 x2) (* y1 y2) (* z1 z2)))))
@@ -147,14 +147,14 @@ simplifies writing other functions that need an equivalent to this as part
 of its sub operations.
 
 Pairwise here means multiply each 'x', each 'y', each 'z'."
-  (declare (3d-vector vector1 vector2))
+  (declare (real-vector vector1 vector2))
   (with-slots (x y z) vector1
     (with-slots ((u x) (v y) (w z)) vector2
       (make-3d-vector (* x u) (* y v) (* z w)))))
 
 (defun transform (point origin u v w)
   "Transform POINT with respect to unitvectors U V W."
-  (declare (3d-vector point origin u v w))
+  (declare (real-vector point origin u v w))
   (add-vectors origin (pairwise-multiply-vector point u)
                (pairwise-multiply-vector point v)
                (pairwise-multiply-vector point w)))
