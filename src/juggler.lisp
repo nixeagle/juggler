@@ -18,9 +18,14 @@ with much greater type safety built in."
   '(vector real))
 
 (defun make-3d-vector (x y z)
+"Deprecated, use make-real-vector instead"
   (declare (real x y z))
   (make-array 3 :element-type 'real
               :initial-contents (list x y z)))
+
+(defun make-real-vector (&rest vector)
+  (declare 
+  (apply #'vector vector))
 
 ;;; Set reader macro so #V(1 2 3) works
 (set-dispatch-macro-character #\# #\V
@@ -31,6 +36,12 @@ with much greater type safety built in."
                                     (make-array (length vect)
                                                 :element-type 'real
                                                 :initial-contents vect))))
+
+(defun vector= (vector1 vector2)
+   (declare (real-vector vector1 vector2))
+   (loop for a across vector1
+        for b across vector2
+        always (= a b)))
 
 (defun add-vector (vector1 vector2)
   "Adds two vectors."
@@ -170,7 +181,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   "Return a vector of 3, with gamma corrected colors. See (gamma) for details"
   (declare (real-vector colors)
 	   (real gamma))
-  (apply #'vector (loop for i across colors
+  (make-real-vector (loop for i across colors
                      collect (gamma i gamma))))
 
 ;;; END
