@@ -9,7 +9,7 @@
    (loop for i from 0 to (1- size)
       collect (random number))))
 
-(let ((vector (make-random-vector 10000))
+(let ((vector (make-random-vector 70001)) ;70001 is prime.
       (i 0))
   (let ((vector-length (length vector)))
     (declare ((integer 0 #.(1- most-positive-fixnum)) i vector-length))
