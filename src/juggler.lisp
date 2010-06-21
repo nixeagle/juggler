@@ -225,7 +225,7 @@ Our ratio is this:
   "Return a vector of 3, with gamma corrected colors. See (gamma) for details"
   (declare (real-vector colors)
 	   (real gamma))
-  (make-real-vector (loop for i across colors
+  (apply #'make-real-vector (loop for i across colors
                      collect (gamma i gamma))))
 
 ;;; END
