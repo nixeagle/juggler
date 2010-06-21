@@ -159,10 +159,12 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
                (pairwise-multiply-vector point w)))
 
 (defun gamma (color gamma)
+  "Return the gamma-corrected color. Often used for contrasts. Formula is 255*c^(1/g)"
   (declare (real color gamma))
   (* 255 (expt color (/ 1 gamma))))
 
 (defun gamma-3-colors (colors gamma)
+  "Return a vector of 3, with gamma corrected colors. See (gamma) for details"
   (declare (3d-vector colors)
 	   (real gamma))
   (with-slots ((r x) (g y) (b z)) colors
