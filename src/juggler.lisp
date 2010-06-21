@@ -215,6 +215,15 @@ Our ratio is this:
   (declare (real virtual-width height width))
   (/ (* virtual-width height) width))
 
+(defun virtual-coordinate-point (point u v w &key (center *center*))
+  "Translates POINT to the virtual coordinate system.
+
+U V W need to be at right angles to each other."
+  (assert (vector= u (cross-product v w)))
+  (add-vectors center
+               (scale u (x point))
+               (scale v (y point))
+               (scale w (z point))))
 
 (defun gamma (color gamma)
   "Return the gamma-corrected color.
