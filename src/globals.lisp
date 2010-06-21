@@ -24,7 +24,12 @@ This is the center of the virtual screen, our `*eye*' is behind this and
 the image we are tracing is in front of it.")
 
 
-(defvar *look* (vector)
-  "Object we are looking at.")
+(defvar *look* (vector 2 2 2)
+  "Object we are looking at.
+
+This is defaulting to 1 1 1 for now.")
+
+(defvar *screen-distance* 1
+  "Distance the `*eye*' is from the screen.")
 
 ;;; END
