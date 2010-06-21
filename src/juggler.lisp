@@ -1,15 +1,5 @@
 (in-package :juggler)
 
-#+ () (defstruct (3d-vector
-             (:constructor make-3d-vector (x y z)))
-  "Models a vector in 3d.
-
-This is a struct mostly for speed reasons, these act like C arrays but
-with much greater type safety built in."
-  (x nil :type real)
-  (y nil :type real)
-  (z nil :type real))
-
 (deftype 3d-vector ()
   '(vector real 3))
 
@@ -24,8 +14,8 @@ with much greater type safety built in."
               :initial-contents (list x y z)))
 
 (defun make-real-vector (&rest vector)
-  (declare 
-  (apply #'vector vector))
+  (declare
+  (apply #'vector vector)))
 
 ;;; Set reader macro so #V(1 2 3) works
 (set-dispatch-macro-character #\# #\V
