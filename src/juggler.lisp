@@ -194,6 +194,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   (add-vectors origin (scale u (svref 2d-point 0))
                (scale v (svref 2d-point 1))))
 
+;;; Screen math
 (defun translate-2d-coordinate (x y &key (width *width*) (height *height*))
   "Translate the coordinates from upper left based to center based.
 
@@ -201,6 +202,17 @@ assuming a 2x2 grid with #(0 0) at the upper left, this translation
 changes the addressing such that the old #(0 0) is now #(-1 1)."
   (declare (real x y width height))
   (the (vector real 2) (vector (- x (/ width 2)) (- (/ height 2) y))))
+
+(defun virtual-screen-height (virtual-width height width)
+  "Determine virtual screen height from existing image proportions.
+
+Our ratio is this:
+
+  virtual-width    width
+  -------------- = ------
+  virtual-height   height"
+  (declare (real virtual-width height width))
+  (/ (* virtual-width height) width))
 
 
 (defun gamma (color gamma)

@@ -93,5 +93,10 @@ This means #V(1 1 1) is equal with respect to the slots to #V(1 1 1)."
   (is (juggler::vector= #(0 0)
                         (juggler::translate-2d-coordinate 0 0 :width 2 :height 2))))
 
+
+(test (virtual-screen-height :suite :juggler)
+  "Should have the same proportions as image height and width."
+  (is (= 10 (juggler::virtual-screen-height 10 5 5))))
+
 ;;; END
 
