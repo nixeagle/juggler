@@ -126,9 +126,9 @@ are coordinates for v and u respectfully
   u=[d e f]
   uv=ad+be+cf"
   (declare (real-vector vector1 vector2))
-  (with-slots ((x1 x) (y1 y) (z1 z)) vector1
-    (with-slots ((x2 x) (y2 y) (z2 z)) vector2
-      (+ (* x1 x2) (* y1 y2) (* z1 z2)))))
+  (loop for i across vector1
+       for j across vector2
+     summing (* i j)))
 
 (defun subtract-vector (vector1 vector2)
   "Subtract two vectors"
