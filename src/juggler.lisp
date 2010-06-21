@@ -190,6 +190,12 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
     (setf u u-result
           v v-result)))
 
+(defun map-2d-to-3d (2d-point origin u v)
+  (declare ((vector real 2) 2d-point)
+           (3d-vector origin u v))
+  (add-vectors origin (scale u (svref 2d-point 0))
+               (scale v (svref 2d-point 1))))
+
 (defun gamma (color gamma)
   "Return the gamma-corrected color. Often used for contrasts. Formula is 255*c^(1/g)"
   (declare (real color gamma))
