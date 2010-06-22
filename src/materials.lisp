@@ -41,13 +41,13 @@
 ;  (radius nil :type (or single-float fixnum))
 ;  (material nil :type material))
 
-(defmacro intersect-macro (o d primary-ray max-time intersection center material)
-  `(let ((a (subtract-vector ,o ,center))
+(defmacro intersect-macro (o d primary-ray max-time intersection center material radius)
+  `(let* ((a (subtract-vector ,o ,center))
 	 (b (* 2.0 (dot-product ,d a)))
-	 (c (- (magnitude-squared a) (expt radius 2)))
-	 (e (- 4 (* expt b 2 c))))
-    (cond ((>= square 0)
-	   (let ((t1 (* 0.5 (- (- b) (sqrt e))))
+	 (c (- (magnitude-squared a) (expt ,radius 2)))
+	 (e (- 4 (* (expt b 2) c))))
+    (cond ((>= e 0)
+	   (let* ((t1 (* 0.5 (- (- b) (sqrt e))))
 		 (t2 (* 0.5 (+ (- b) (sqrt e))))
 		 (intersected nil))
 	     (cond ((and (>= t1 *epsilon-lower-time-bound*)
@@ -60,7 +60,7 @@
 		    (setf intersected t)))
 	     (cond ((and ,primary-ray intersected)
 		    (setf (intersection-hit ,intersection)
-			  (ray (,o ,d (intersection-time ,intersection))))
+			  (ray ,o ,d (intersection-time ,intersection)))
 		    (setf (intersection-normal ,intersection) (construct-unit-vector
 							      (intersection-hit ,intersection)
 							      ,center))
@@ -75,7 +75,8 @@
 
 (defmethod intersect ((o real-vector) (d real-vector) (primary-ray boolean)
 		      (max-time real) (intersection intersection) (object sphere))
-  (intersect-macro o d primary-ray max-time intersection (slot-value object center) (slot-value object material)))
+  (intersect-macro o d primary-ray max-time intersection (slot-value object 'center) (slot-value object 'material)
+		   (slot-value object 'center)))
 
 
 ;;; END
