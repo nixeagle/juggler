@@ -36,10 +36,10 @@
   (normal nil :type real-vector)
   (material nil :type material))
 
-;(defstruct (sphere (:include object))
-;  (center nil :type real-vector)
-;  (radius nil :type (or single-float fixnum))
-;  (material nil :type material))
+(defstruct (sphere (:include object))
+  (center nil :type real-vector)
+  (radius nil :type (or single-float fixnum))
+  (material nil :type material))
 
 (defmacro intersect-macro (o d primary-ray max-time intersection center material radius)
   `(let* ((a (subtract-vector ,o ,center))
@@ -66,12 +66,6 @@
 							      ,center))
 		    (setf (intersection-material ,intersection) ,material)))
 	     (if intersected 't 'f))))))
-
-(defclass sphere ()
-    ((center :accessor center :initform #(0 0 0))
-     (radius :accessor radius :initform 1)
-     (material :accessor material :initform +red-plastic+)
-     (intersect :reader intersect)))
 
 (defmethod intersect ((o real-vector) (d real-vector) (primary-ray boolean)
 		      (max-time real) (intersection intersection) (object sphere))
