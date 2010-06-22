@@ -9,6 +9,7 @@
              (:file "globals")
              (:file "materials")
              (:file "random")
-             (:file "juggler" :depends-on ("globals" "readmacro"))))))
+             (:file "juggler" :depends-on ("globals" "readmacro"))
+             (:file "render" :depends-on ("juggler" "random"))))))
 
 ;;; END
