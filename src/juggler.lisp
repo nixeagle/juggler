@@ -182,13 +182,13 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
     ((vector= w #V(0 1 0)) (values #V(1 0 0) #V(0 0 -1)))
     ((vector= w #V(0 -1 0) (values #V(1 0 0) #V(0 0 1))))
     (t (values (vector (z w) 0 (- (x w)))
-               (cross-product w u)))))
+               (cross-product w (vector (z w) 0 (- (x w))))))))
 
 (defun onb! (u v w)
   (declare (3d-vector u v w))
   (multiple-value-bind (u-result v-result) (onb u v w)
-    (setf u u-result
-          v v-result)))
+    (setf u u-result)
+    (setf v v-result)))
 
 (defun map-2d-to-3d (2d-point origin u v)
   (declare ((vector real 2) 2d-point)

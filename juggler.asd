@@ -7,6 +7,7 @@
             :components
             ((:file "readmacro")
              (:file "globals")
+             (:file "materials")
              (:file "random")
              (:file "juggler" :depends-on ("globals" "readmacro"))))))
 
