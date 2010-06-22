@@ -3,4 +3,5 @@
 (in-package :cl-user)
 
 (defpackage #:juggler
-  (:use :cl :nutils))
+  (:use :cl :nutils)
+  (:shadow #:intersection))
