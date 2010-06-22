@@ -22,3 +22,23 @@
                  :highlight-color #(1 1 1)
                  :reflection-color #(0 0 0))
   "An object that loks like red plastic, whoo!")
+
+
+;;; things working with materials, should be moved to better named files
+;;; later.
+
+(defstruct object
+  "All raytraced objects ought to inherit from this")
+
+(defstruct intersection
+  (time nil :type single-float)
+  (hit nil :type real-vector)
+  (normal nil :type real-vector)
+  (material nil :type material))
+
+(defstruct (sphere (:include object))
+  (center nil :type real-vector)
+  (radius nil :type (or single-float fixnum))
+  (material nil :type material))
+
+;;; END
