@@ -6,6 +6,7 @@
             :depends-on ("packages")
             :components
             ((:file "readmacro")
+             (:file "inline-math")
              (:file "globals")
              (:file "materials" :depends-on ("juggler"))
              (:file "random")
