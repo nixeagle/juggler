@@ -41,7 +41,7 @@
 ;  (radius nil :type (or single-float fixnum))
 ;  (material nil :type material))
 
-(defmacro intersect(o d primary-ray max-time intersection)
+(defmacro intersect-macro (o d primary-ray max-time intersection center material)
   `(let ((a (subtract-vector ,o ,center))
 	 (b (* 2.0 (dot-product ,d a)))
 	 (c (- (magnitude-squared a) (expt radius 2)))
@@ -63,11 +63,19 @@
 			  (ray (,o ,d (intersection-time ,intersection))))
 		    (setf (intersection-normal ,intersection) (construct-unit-vector
 							      (intersection-hit ,intersection)
-							      center))
-		    (setf (intersection-material ,intersection) material)))
+							      ,center))
+		    (setf (intersection-material ,intersection) ,material)))
 	     (if intersected 't 'f))))))
 
-;(defclass sphere ()
-;  (intersect :initform intersect))
+(defclass sphere ()
+    ((center :accessor center :initform #(0 0 0))
+     (radius :accessor radius :initform 1)
+     (material :accessor material :initform +red-plastic+)
+     (intersect :reader intersect)))
+
+(defmethod intersect ((o real-vector) (d real-vector) (primary-ray boolean)
+		      (max-time real) (intersection intersection) (object sphere))
+  (intersect-macro o d primary-ray max-time intersection (slot-value object center) (slot-value object material)))
+
 
 ;;; END
