@@ -235,6 +235,20 @@ U V W need to be at right angles to each other."
                (scale v (y point))
                (scale w (z point))))
 
+(defun intersectp (sphere origin direction
+                   &key max-time (min-time *epsilon-lower-time-bound*)
+                   (center *center*))
+  (let ((intersection (subtract-vector origin center)))
+    (let ((p (* 2 (dot-product direction intersection)))
+          (c (- (magnitude intersection)
+                (expt (sphere-radius sphere) 2))))
+      (let ((square (discriminant 1 p c)))
+        (when (>= square 0)
+          (multiple-value-bind (t1 t2) (quadratic-roots 1 p square)
+            (cond
+              ((<= min-time t1 max-time) (values t t1))
+              ((<= min-time t2 max-time) (values t t2)))))))))
+
 (defun gamma (color gamma)
   "Return the gamma-corrected color.
 
