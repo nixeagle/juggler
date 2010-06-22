@@ -32,4 +32,7 @@ This is defaulting to 1 1 1 for now.")
 (defvar *screen-distance* 1
   "Distance the `*eye*' is from the screen.")
 
+(defvar *epsilon-lower-time-bound* 0.001
+  "Times lower then this are considered too irrelevant to render.")
+
 ;;; END
