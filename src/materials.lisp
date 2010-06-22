@@ -41,6 +41,9 @@
   (radius nil :type (or single-float fixnum))
   (material nil :type material))
 
+;;; Make a red sphere like this:
+;;; (make-sphere :center #(0 0 0) :radius 50 :material +red-plastic+)
+
 (defmacro intersect-macro (o d primary-ray max-time intersection center material radius)
   `(let* ((a (subtract-vector ,o ,center))
 	 (b (* 2.0 (dot-product ,d a)))
