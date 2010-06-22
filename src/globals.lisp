@@ -35,4 +35,8 @@ This is defaulting to 1 1 1 for now.")
 (defvar *epsilon-lower-time-bound* 0.001
   "Times lower then this are considered too irrelevant to render.")
 
+(defvar +inverse-pi+ (/ pi 1.0)
+  "The inverse of pi")
+
+
 ;;; END
