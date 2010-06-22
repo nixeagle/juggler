@@ -200,6 +200,10 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   "Delta = b^2 - 4ac"
   (- (expt b 2) (* 4 a c)))
 
+(defun quadratic-roots (a b discriminant &aux (b (sqrt b)))
+  (let ((bottom (* 2 a)))
+    (values (/ (- (- b) discriminant) bottom)
+            (/ (- b discriminant) bottom))))
 
 ;;; Screen math
 (defun translate-2d-coordinate (x y &key (width *width*) (height *height*))
