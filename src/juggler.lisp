@@ -196,6 +196,11 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
   (add-vectors origin (scale u (svref 2d-point 0))
                (scale v (svref 2d-point 1))))
 
+(defun discriminant (a b c)
+  "Delta = b^2 - 4ac"
+  (- (expt b 2) (* 4 a c)))
+
+
 ;;; Screen math
 (defun translate-2d-coordinate (x y &key (width *width*) (height *height*))
   "Translate the coordinates from upper left based to center based.
