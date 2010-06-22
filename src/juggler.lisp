@@ -174,7 +174,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
                for b across vector
                always (< (abs (- a b)) 0.000000001))))
 
-(defun onb (u v w)
+(defun onb (w &optional (u #(0 0 0)) (v #(0 0 0)))
   "Defines a right handed coordinate system."
   (declare (3d-vector u v w)
            (ignore v))
@@ -184,9 +184,9 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
     (t (values (vector (z w) 0 (- (x w)))
                (cross-product w (vector (z w) 0 (- (x w))))))))
 
-(defun onb! (u v w)
+(defun onb! (w u v)
   (declare (3d-vector u v w))
-  (multiple-value-bind (u-result v-result) (onb u v w)
+  (multiple-value-bind (u-result v-result) (onb w u v)
     (setf u u-result)
     (setf v v-result)))
 
