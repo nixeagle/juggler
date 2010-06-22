@@ -21,7 +21,7 @@
                  :diffuse-color #(1 0 0)
                  :highlight-color #(1 1 1)
                  :reflection-color #(0 0 0))
-  "An object that loks like red plastic, whoo!")
+  "An object that looks like red plastic, whoo!")
 
 
 ;;; things working with materials, should be moved to better named files
@@ -36,9 +36,25 @@
   (normal nil :type real-vector)
   (material nil :type material))
 
-(defstruct (sphere (:include object))
-  (center nil :type real-vector)
-  (radius nil :type (or single-float fixnum))
-  (material nil :type material))
+;(defstruct (sphere (:include object))
+;  (center nil :type real-vector)
+;  (radius nil :type (or single-float fixnum))
+;  (material nil :type material))
+
+;(defun intersect(o intersection d primary-ray)
+;  (declare (real-vector o d)
+;	   (intersection intersection))
+;  (setf temp (subtract-vector o center))
+;  (setf b (* 2.0 (dot-product d temp)))
+;  (setf c (- (magnitude-squared temo) (expt radius 2)))
+;  (setf square (- 4 (* (expt b 2) c)))
+;  (cond ((>= square 0)
+;	 (setf square-root (sqrt square))
+;	 (setf t1 (* 0.5 (- (- b) square-root)))
+;	 (setf t2 (* 0.5 (+ (- b) square-root)))
+;	 (setf intersected false)
+	 
+;(defclass sphere ()
+;  (intersect :initform intersect))
 
 ;;; END

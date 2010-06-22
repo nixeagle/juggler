@@ -67,6 +67,10 @@ version of the Pythagorean Theorem."
   (sqrt (loop for i across vector
            summing (expt i 2))))
 
+(defun magnitude-squared (vector)
+  (declare (real-vector vector))
+  (expt (magnitude vector) 2))
+
 (defun scale (vector scale-factor)
   "You can scale a vector (change its length) by
 multiplying it by a constant"
