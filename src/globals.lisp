@@ -38,5 +38,18 @@ This is defaulting to 1 1 1 for now.")
 (defvar +inverse-pi+ (/ pi 1.0)
   "The inverse of pi")
 
+(defvar *width* (/ 1920 *image_scale*)
+  "Width Varaible")
+
+(defvar *height* (/ 1080 *image_scale*)
+  "Height Variable")
+
+(defvar *sqrt-samples* 16
+  "Square Root Samples Variable")
+
+(defvar *samples* (* *sqrt-samples* *sqrt-samples*)
+  "Samples Variable")
+
+
 
 ;;; END
