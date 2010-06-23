@@ -1,20 +1,12 @@
 (in-package :juggler)
 
-(deftype 3d-vector ()
+(deftype 3-vector ()
   '(vector real 3))
 
 (deftype real-vector ()
   "A vector containing only real numbers."
   '(vector real))
 
-(defun make-3d-vector (x y z)
-"Deprecated, use make-real-vector instead"
-  (declare (real x y z))
-  (make-array 3 :element-type 'real
-              :initial-contents (list x y z)))
-
-(defun make-real-vector (&rest vector)
-  (apply #'vector vector))
 
 ;;; This define x y and z, aliases for `aref' on a vector.
 (declaim (inline x y z))
@@ -52,11 +44,10 @@
 
 (defun add-real-vector (vector real)
   "Add a constant to VECTOR"
-  (declare (3d-vector vector) (real real))
-  (with-slots (x y z) vector
-    (make-3d-vector (+ x real)
-                    (+ y real)
-                    (+ z real))))
+  (declare (3-vector vector) (real real))
+  (apply #'vector (loop
+		     for a across vector
+		     collect (+ a real))))
 
 (defun magnitude (vector)
   "The magnitude of a vector.
@@ -114,7 +105,7 @@ Result is the vector that is perpendicular to both VECTOR1 and VECTOR2.
 For example #V[1 0 0] #V[0 1 0] results in #V[0 0 1]. Imagine that the
 first two vectors are the X and the Y axis on a coordinate chart, the
 result of this function defines the Z axis."
-  (declare (3d-vector vector1 vector2))
+  (declare (3-vector vector1 vector2))
   (let ((x1 (x vector1)) (y1 (y vector1)) (z1 (z vector1))
         (x2 (x vector2)) (y2 (y vector2)) (z2 (z vector2)))
     (vector (- (* y1 z2)
@@ -180,7 +171,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
 
 (defun onb (w &optional (u #(0 0 0)) (v #(0 0 0)))
   "Defines a right handed coordinate system."
-  (declare (3d-vector u v w)
+  (declare (3-vector u v w)
            (ignore v))
   (cond
     ((vector= w #V(0 1 0)) (values #V(1 0 0) #V(0 0 -1)))
@@ -189,7 +180,7 @@ Pairwise here means multiply each 'x', each 'y', each 'z'."
                (cross-product w (vector (z w) 0 (- (x w))))))))
 
 (defun onb! (w u v)
-  (declare (3d-vector u v w))
+  (declare (3-vector u v w))
   (multiple-value-bind (u-result v-result) (onb w u v)
     (setf u u-result)
     (setf v v-result)))
@@ -265,9 +256,9 @@ Often used for contrasts. Formula is 255*c^(1/g)"
   "Return a vector of 3, with gamma corrected colors.
 
 See `gamma' for details"
-  (declare (real-vector colors)
+  (declare (3-vector colors)
 	   (real gamma))
-  (apply #'make-real-vector (loop for i across colors
+  (apply #'vector (loop for i across colors
                      collect (gamma i gamma))))
 
 ;;; END
