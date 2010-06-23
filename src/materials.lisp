@@ -44,7 +44,7 @@
 ;;; Make a red sphere like this:
 ;;; (make-sphere :center #(0 0 0) :radius 50 :material +red-plastic+)
 
-(defmacro intersect-macro (o d primary-ray max-time intersection center material radius)
+(defmacro intersectp-macro (o d primary-ray max-time intersection center material radius)
   `(let* ((a (subtract-vector ,o ,center))
 	 (b (* 2.0 (dot-product ,d a)))
 	 (c (- (magnitude-squared a) (expt ,radius 2)))
@@ -69,11 +69,6 @@
 							      ,center))
 		    (setf (intersection-material ,intersection) ,material)))
 	     (if intersected 't 'f))))))
-
-(defmethod intersect ((o real-vector) (d real-vector) (primary-ray boolean)
-		      (max-time real) (intersection intersection) (object sphere))
-  (intersect-macro o d primary-ray max-time intersection (slot-value object 'center) (slot-value object 'material)
-		   (slot-value object 'center)))
 
 
 ;;; END

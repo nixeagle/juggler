@@ -239,9 +239,10 @@ U V W need to be at right angles to each other."
                (scale v (y point))
                (scale w (z point))))
 
-(defun intersectp (sphere origin direction
-                   &key max-time (min-time *epsilon-lower-time-bound*)
-                   (center *center*))
+(defmethod intersectp ((sphere sphere) (origin real-vector)
+		       (distance real-vector) &key max-time
+		       (min-time *epsilon-lower-time-bound*)
+		       (center *center*))
   (let ((intersection (subtract-vector origin center)))
     (let ((p (* 2 (dot-product direction intersection)))
           (c (- (magnitude intersection)
